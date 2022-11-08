@@ -42,9 +42,11 @@ function complexityChange(option) {
         if (letters) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
+            document.getElementById('capital-complexity-option-container').style.cssText = "width: 100%; height: 100%"
         } else {
             iconSVG.classList.add('off')
             iconSVG.classList.remove('on')
+            document.getElementById('capital-complexity-option-container').style.cssText = "width: 0; height: 100%; padding: 0; margin: 0; opacity: 0"
         }
     }
     if (option === 'capital') {
@@ -112,9 +114,15 @@ function generatePassword(length, letters, capital, special, numbers) {
         password.push(randCharacter[Math.floor(Math.random() * randCharacter.length)])
     }
 
-    console.log(password)
-    console.log(password.join(''))
-    document.getElementById('password-output').textContent = password.join('')
+    if (!letters && !special && !numbers) { // if nothing is enabled then it lets the user know
+        password = "No Complexity Option Selected"
+    }
+
+    if (Array.isArray(password)) { // if password is string then it doesnt try to join the array together
+        document.getElementById('password-output').textContent = password.join('')
+    } else {
+        document.getElementById('password-output').textContent = password
+    }
 }
 
 generatePassword(length, letters, capital, special, numbers)

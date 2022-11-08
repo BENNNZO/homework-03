@@ -143,9 +143,10 @@ main p {
 
 .complexity-options {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  transition: all 1s ease;
 }
 
 .complexity-options input {
@@ -256,4 +257,22 @@ main p {
     opacity: 0;
     transform: scale(0) rotate(0);
   }
+}
+.letter-capital-conatiner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#capital-complexity-option-container {
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: 50%;
+  transform: translateY(50%);
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  transition: all 1s ease;
 }/*# sourceMappingURL=style.css.map */

@@ -12,7 +12,7 @@
     <main>
         <h1>PASSWORD GENERATOR</h1>
         <div class="password-output-buttons-container">
-            <button class="copy-password"></button>
+            <button class="copy-password" onclick="navigator.clipboard.writeText(document.getElementById('password-output').innerHTML)"></button>
             <button class="generate-password" onclick="generatePassword(length, letters, capital, special, numbers)"></button>
         </div>
         <p id="password-output"></p>
@@ -21,25 +21,27 @@
             <p>LENGTH: <br><span id="length-display" number="10">10</span></p>
         </div>
         <section class="complexity-options">
-            <button class="complexity-option" onclick="complexityChange('letter')">
-                <div class="on-off on" id="letterSVG">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></svg>
-                </div>
-            Letters</button>
-            <button class="complexity-option" onclick="complexityChange('capital')">
-                <div class="on-off on" id="capitalSVG">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></svg>
-                </div>
-            Capital Characters</button>
-            <button class="complexity-option" onclick="complexityChange('special')">
+            <div class="letter-capital-conatiner">
+                <button class="complexity-option" onclick="complexityChange('letter')" id="letter-complexity-option-container">
+                    <div class="on-off on" id="letterSVG">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></svg>
+                    </div>
+                Letters</button>
+                <button class="complexity-option" onclick="complexityChange('capital')" id="capital-complexity-option-container">
+                    <div class="on-off on" id="capitalSVG">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></svg>
+                    </div>
+                Capital Characters</button>
+            </div>
+            <button class="complexity-option" onclick="complexityChange('special')" id="special-complexity-option-container">
                 <div class="on-off on" id="specialSVG">
                     <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
                     <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></svg>
                 </div>
             Special Characters</button>
-            <button class="complexity-option" onclick="complexityChange('number')">
+            <button class="complexity-option" onclick="complexityChange('number')" id="number-complexity-option-container">
                 <div class="on-off on" id="numberSVG">
                     <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368"/></svg>
                     <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M416 128L192 384l-96-96"/></svg>
