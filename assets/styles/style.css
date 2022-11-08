@@ -135,7 +135,7 @@ main p {
 
 .length-slider-container p {
   font-size: 2rem;
-  margin-left: 10vw;
+  margin-left: 3vw;
   text-align: left;
 }
 
@@ -317,7 +317,7 @@ main p {
 #capital-complexity-option-container {
   position: absolute;
   overflow: hidden;
-  transition: all 1s ease;
+  transition: all 0.5s ease;
   width: 150%;
   height: 0;
   top: 0;
