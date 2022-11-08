@@ -23,37 +23,28 @@ main {
 }
 
 main h1 {
-  color: rgb(240, 239, 244);
+  color: rgb(158, 130, 156);
   font-size: 5rem;
   letter-spacing: 0.3em;
   text-align: center;
   font-weight: 900;
   overflow: hidden;
-  border-right: 15px solid rgb(240, 239, 244);
+  border-right: 15px solid rgb(158, 130, 156);
   width: auto;
-  color: transparent;
   white-space: nowrap;
-  -webkit-animation: typing-animation 3s steps(18) 0.5s forwards, text-cursor 0.5s step-end infinite alternate;
-          animation: typing-animation 3s steps(18) 0.5s forwards, text-cursor 0.5s step-end infinite alternate;
+  -webkit-animation: typing-animation 2.5s steps(19) 0.5s forwards, text-cursor 0.5s step-end infinite alternate;
+          animation: typing-animation 2.5s steps(19) 0.5s forwards, text-cursor 0.5s step-end infinite alternate;
 }
 
 @-webkit-keyframes typing-animation {
-  from {
-    color: rgb(240, 239, 244);
-  }
   to {
     width: var(--headingCharacterWidth);
-    color: rgb(240, 239, 244);
   }
 }
 
 @keyframes typing-animation {
-  from {
-    color: rgb(240, 239, 244);
-  }
   to {
     width: var(--headingCharacterWidth);
-    color: rgb(240, 239, 244);
   }
 }
 @-webkit-keyframes text-cursor {
@@ -77,47 +68,111 @@ main p {
 .password-output-buttons-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .copy-password, .generate-password {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  width: 40px;
-  margin: 0 20px;
-  aspect-ratio: 1/1;
-  background-color: transparent;
+  height: 40px;
+  margin: 0 10px;
+  background-color: rgb(41, 21, 40);
   border: none;
-  border-radius: 20%;
+  border-radius: 10px;
   transition: all 0.25s ease;
-  outline: 2px solid rgb(240, 239, 244);
+  outline: 2px solid rgb(15, 5, 14);
+  color: rgb(158, 130, 156);
+  padding: 10px;
 }
-.copy-password::after, .generate-password::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
+.copy-password::before, .generate-password::before {
+  margin-right: 10px;
   height: 90%;
+  aspect-ratio: 1/1;
 }
 
 .copy-password:hover {
   background-color: rgb(41, 21, 40);
-  transform: scale(1.3);
+  transform: scale(1.1);
+  outline: 2px solid rgb(80, 51, 90);
+  color: rgb(240, 239, 244);
 }
 
 .generate-password:hover {
   background-color: rgb(41, 21, 40);
-  transform: scale(1.3);
+  transform: scale(1.1);
+  outline: 2px solid rgb(80, 51, 90);
+  color: rgb(240, 239, 244);
 }
 
-.copy-password::after {
-  content: url(../icons/copy-outline.svg);
+.copy-password::before {
+  content: url(../icons/clipboard-outline.svg);
 }
 
-.generate-password::after {
+.copied::before {
+  -webkit-animation: copied 3s ease forwards;
+          animation: copied 3s ease forwards;
+}
+
+.generate-password::before {
   content: url(../icons/regenerate-outline.svg);
+  transform: rotate(var(--generate-icon-rotation));
+  transition: 1s ease;
 }
 
+@-webkit-keyframes copied {
+  0% {
+    transform: scale(1);
+    filter: blur(0);
+  }
+  25% {
+    transform: scale(0) rotate(360deg);
+    filter: blur(5px);
+  }
+  50% {
+    transform: scale(1) rotate(720deg);
+    filter: blur(0);
+    content: url(../icons/checkmark-outline.svg);
+  }
+  75% {
+    transform: scale(0) rotate(360deg);
+    filter: blur(5px);
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0);
+    content: url(../icons/clipboard-outline.svg);
+  }
+}
+
+@keyframes copied {
+  0% {
+    transform: scale(1);
+    filter: blur(0);
+  }
+  25% {
+    transform: scale(0) rotate(360deg);
+    filter: blur(5px);
+  }
+  50% {
+    transform: scale(1) rotate(720deg);
+    filter: blur(0);
+    content: url(../icons/checkmark-outline.svg);
+  }
+  75% {
+    transform: scale(0) rotate(360deg);
+    filter: blur(5px);
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0);
+    content: url(../icons/clipboard-outline.svg);
+  }
+}
 #password-output {
   background-color: rgb(41, 21, 40);
   width: 100%;
@@ -130,13 +185,14 @@ main p {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 600px;
+  width: 700px;
 }
 
 .length-slider-container p {
   font-size: 2rem;
   margin-left: 3vw;
   text-align: left;
+  white-space: nowrap;
 }
 
 #length-display {
@@ -193,6 +249,7 @@ main p {
   justify-content: space-between;
   align-items: center;
   transition: all 1s ease;
+  gap: 10px;
   transform: translateY(25%);
 }
 
@@ -204,13 +261,14 @@ main p {
   justify-content: flex-start;
   white-space: nowrap;
   border-radius: 15px;
-  border: 5px solid rgb(15, 5, 14);
+  border: 0px solid rgb(15, 5, 14);
   width: 100%;
   height: 100%;
   padding: 5px 15px;
   font-size: 1rem;
   color: rgb(41, 21, 40);
   background-color: rgb(104, 210, 104);
+  box-shadow: 0 0 20px rgba(104, 210, 104, 0.7);
   opacity: 0.5;
   transition: all 0.5s ease;
 }
@@ -222,8 +280,8 @@ main p {
 
 .on-off {
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin-right: 20px;
 }
 
@@ -324,6 +382,7 @@ main p {
   margin: 0;
   padding: 0;
   filter: opacity(0);
+  transform: translateY(-10px);
 }
 
 .letter-capital-conatiner:hover #capital-complexity-option-container {
@@ -367,12 +426,15 @@ main p {
     width: 70%;
     transform: translateY(0);
   }
+  .complexity-option {
+    border-radius: 5px;
+  }
   .letter-capital-conatiner {
     grid-column: 1/3;
     flex-direction: row;
   }
   #letter-complexity-option-container {
-    width: 50%;
+    width: calc(50% - 5px);
   }
   #capital-complexity-option-container {
     cursor: pointer;
@@ -381,22 +443,23 @@ main p {
     align-items: center;
     justify-content: flex-start;
     white-space: nowrap;
-    border-radius: 15px;
-    border: 5px solid rgb(15, 5, 14);
-    width: 50%;
+    width: calc(50% - 5px);
     height: 100%;
-    left: 50%;
+    left: calc(50% + 5px);
     padding: 5px 15px;
+    border-radius: 5px;
+    border: none;
     color: rgb(41, 21, 40);
     background-color: rgb(104, 210, 104);
     filter: opacity(1);
     transition: all 0.5s ease;
+    transform: translateY(0);
   }
   #special-complexity-option-container, #number-complexity-option-container {
     grid-column: 1/3;
   }
   .letter-capital-conatiner:hover #capital-complexity-option-container {
-    width: 50%;
+    width: calc(50% - 5px);
     height: 100%;
     top: 0;
     color: rgb(240, 239, 244);

@@ -4,6 +4,9 @@ let capital = true
 let special = true
 let numbers = true
 
+let rotation = 0
+let copied = false
+
 let letterArray  = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 let specialArray = ['!', "@", '#', '$', '%', "^", '&', '*', '(', ")", '~', '`', '-', "=", '[', ']', '\\', ';', "'", ',', '.', '/', '_', "+", '{', '}', '|', ':', "\"", '<', '>', '?']
 let numbersArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -31,9 +34,13 @@ setInterval(function() { // updates the generator when settings are changed (upd
     }
 }, 50)
 
+function generateButtonClick() {
+    rotation += 360
+    document.documentElement.style.setProperty('--generate-icon-rotation', `${rotation}deg`)
+}
+
 function complexityChange(option) {
     const optionContainer = document.getElementById(`${option}-complexity-option-container`)
-    console.log(optionContainer)
 
     if (option === 'letter') {
         letters =! letters
@@ -43,10 +50,12 @@ function complexityChange(option) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
             optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
+            optionContainer.style.boxShadow = '0 0 20px rgb(104, 210, 104, 0.7)'
         } else {
             iconSVG.classList.add('off')
             iconSVG.classList.remove('on')
             optionContainer.style.backgroundColor = 'lightcoral'
+            optionContainer.style.boxShadow = '0 0 20px lightcoral'
         }
     }
     if (option === 'capital') {
@@ -57,10 +66,12 @@ function complexityChange(option) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
             optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
+            optionContainer.style.boxShadow = '0 0 20px rgb(104, 210, 104, 0.7)'
         } else {
             iconSVG.classList.add('off')
             iconSVG.classList.remove('on')
             optionContainer.style.backgroundColor = 'lightcoral'
+            optionContainer.style.boxShadow = '0 0 20px lightcoral'
         }
     }
     if (option === 'special') {
@@ -71,10 +82,12 @@ function complexityChange(option) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
             optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
+            optionContainer.style.boxShadow = '0 0 20px rgb(104, 210, 104, 0.7)'
         } else {
             iconSVG.classList.add('off')
             iconSVG.classList.remove('on')
             optionContainer.style.backgroundColor = 'lightcoral'
+            optionContainer.style.boxShadow = '0 0 20px lightcoral'
         }
     }
     if (option === 'number') {
@@ -85,15 +98,18 @@ function complexityChange(option) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
             optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
+            optionContainer.style.boxShadow = '0 0 20px rgb(104, 210, 104, 0.7)'
         } else {
             iconSVG.classList.add('off')
             iconSVG.classList.remove('on')
             optionContainer.style.backgroundColor = 'lightcoral'
+            optionContainer.style.boxShadow = '0 0 20px lightcoral'
         }
     }
 }
 
 function generatePassword(length, letters, capital, special, numbers) {
+    document.getElementById('copy-button').classList.remove('copied')
     let password = []
 
     for (let i = 0; i < length; i++) {
@@ -132,6 +148,11 @@ function generatePassword(length, letters, capital, special, numbers) {
     } else {
         document.getElementById('password-output').textContent = password
     }
+}
+
+function copyClipboard() {
+    navigator.clipboard.writeText(document.getElementById('password-output').innerHTML)
+    document.getElementById('copy-button').classList.add('copied')
 }
 
 generatePassword(length, letters, capital, special, numbers)
