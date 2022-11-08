@@ -6,15 +6,11 @@ let numbers = true
 
 let letterArray  = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 let specialArray = ['!', "@", '#', '$', '%', "^", '&', '*', '(', ")", '~', '`', '-', "=", '[', ']', '\\', ';', "'", ',', '.', '/', '_', "+", '{', '}', '|', ':', "\"", '<', '>', '?']
-let numbersArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+let numbersArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 let specialCharacters = "!@#$%^&*()~`_+{}|:<>?-=[]\;',./'" 
 
 const lengthDisplay = document.getElementById('length-display')
-
-document.getElementById('password-length-slider').addEventListener('change', function() {
-    generatePassword(length, letters, capital, special, numbers)
-})
 
 setInterval(function() { // updates the generator when settings are changed (updates happen every 50ms)
     length = document.getElementById('password-length-slider').value;
@@ -42,11 +38,9 @@ function complexityChange(option) {
         if (letters) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
-            document.getElementById('capital-complexity-option-container').style.cssText = "width: 100%; height: 100%"
         } else {
             iconSVG.classList.add('off')
             iconSVG.classList.remove('on')
-            document.getElementById('capital-complexity-option-container').style.cssText = "width: 0; height: 100%; padding: 0; margin: 0; opacity: 0"
         }
     }
     if (option === 'capital') {
@@ -101,6 +95,9 @@ function generatePassword(length, letters, capital, special, numbers) {
                 const randLetter  = letterArray[Math.floor(Math.random() * letterArray.length)]
                 randCharacter.push(randLetter.toLowerCase())
             }
+        } else if (capital === true) {
+            const randLetter  = letterArray[Math.floor(Math.random() * letterArray.length)]
+            randCharacter.push(randLetter.toUpperCase())
         }
         if (special) {  // if special characters are enabled then get a random character from array
             const randSpecial = specialArray[Math.floor(Math.random() * specialArray.length)]
@@ -114,7 +111,7 @@ function generatePassword(length, letters, capital, special, numbers) {
         password.push(randCharacter[Math.floor(Math.random() * randCharacter.length)])
     }
 
-    if (!letters && !special && !numbers) { // if nothing is enabled then it lets the user know
+    if (!letters && !capital && !special && !numbers) { // if nothing is enabled then it lets the user know
         password = "No Complexity Option Selected"
     }
 
