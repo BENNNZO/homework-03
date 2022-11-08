@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;500;700;900&display=swap');
+
+// CONSTANTS AND VARIABLES
+
+$c1: rgb(  15,   5,  14, 1);
+$c2: rgba( 41,  21,  40, 1);
+$c3: rgba( 58,  62,  59, 1);
+$c4: rgba(158, 130, 156, 1);
+$c5: rgba(240, 239, 244, 1);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Source Code Pro', monospace;
+}
+
+body {
+    background-color: $c1;
+}
+
+// MAIN SECTION
+
+main {
+    position: relative;
+    padding: 10vh 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main h1 {
+    color: $c5;
+    font-size: 5rem;
+    letter-spacing: 0.3em;
+    text-align: center;
+    font-weight: 900;
+}
+
+// PASSWORD OUTPUT 
+
+main p {
+    color: $c5;
+    font-size: 3rem;
+    letter-spacing: 0.3em;
+    font-weight: 300;
+    margin-right: 20px;
+}
+
+// COPY AND REGENERATE BUTTONS
+
+.password-output-buttons-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.copy-password, .generate-password {
+    position: relative;
+    cursor: pointer;
+    width: 40px;
+    margin: 0 20px;
+    aspect-ratio: 1 / 1;
+    background-color: transparent;
+    border: none;
+    border-radius: 20%;
+    transition: all 0.15s cubic-bezier(1, 0.35, 0.63, 1.61);
+    &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        height: 90%;
+    }
+}
+
+.copy-password:hover {
+    background-color: $c4;
+    transform: scale(1.3);
+}
+
+.generate-password:hover {
+    background-color: $c4;
+    transform: scale(1.3);
+}
+
+.copy-password::after {
+    content: url(../icons/copy-outline.svg);
+}
+
+.generate-password::after {
+    content: url(../icons/regenerate-outline.svg);
+}
+
+// LENGTH SLIDER
+
+.length-slider-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+}
+
+.length-slider-container p {
+    font-size: 2rem;
+    margin-left: 10vw;
+
+}
+
+#length-display {
+    font-weight: 900;
+}
+
+.password-length-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    background: $c2;
+    outline: none;
+    opacity: 0.7;
+    border-radius: 100px;
+    -webkit-transition: .2s;
+    transition: all .2s ease;
+}
+  
+.password-length-slider:hover {
+    opacity: 1;
+    height: 20px;
+}
+  
+.password-length-slider:hover::-webkit-slider-thumb {
+    transform: scale(0.6);
+}
+  
+.password-length-slider:hover::-moz-range-thumb {
+    transform: scale(0.6);
+}
+  
+.password-length-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: $c4;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+  
+.password-length-slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: $c4;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+// COMPLEXITY OPTIONS
+  
+.complexity-options {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+}
+  
+.complexity-options input {
+      margin: 5px 0px;
+}
+  
+@for $i from 1 through 3 {
+    .complexity-options input:nth-child(#{$i}){
+          
+    }
+}
+
+.complexity-option {
+    width: 100%;
+    height: 100%;
+    padding: 5px 15px;
+    font-size: 1.5rem;
+    color: $c2;
+    background-color: $c4;
+    outline: 0;
+    opacity: 0.2;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.complexity-option:hover {
+    color: $c5;
+    opacity: 1;
+}
+
+.on-off {
+    position: relative;
+    width: 50px;
+    aspect-ratio: 1/1;
+    margin-right: 20px;
+}
+
+.on-off svg:nth-child(1) {
+    position: absolute;
+    color: red;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.on-off svg:nth-child(2) {
+    position: absolute;
+    color: lightgreen;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+.on svg:nth-child(1) {
+    animation: off 1s ease forwards;
+}
+
+.on svg:nth-child(2) {
+    animation: on 1s ease forwards;
+}
+
+.off svg:nth-child(1) {
+    animation: on 1s ease forwards;
+}
+
+.off svg:nth-child(2) {
+    animation: off 1s ease forwards;
+}
+
+@keyframes on {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+@keyframes off {
+    0% {
+        opacity: 1;
+        transform: scale(1) rotate(360deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(0);
+    }
+}
