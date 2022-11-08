@@ -31,6 +31,9 @@ setInterval(function() { // updates the generator when settings are changed (upd
 }, 50)
 
 function complexityChange(option) {
+    const optionContainer = document.getElementById(`${option}-complexity-option-container`)
+    console.log(optionContainer)
+
     if (option === 'letter') {
         letters =! letters
         generatePassword(length, letters, capital, special, numbers)
@@ -38,9 +41,11 @@ function complexityChange(option) {
         if (letters) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
+            optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
         } else {
             iconSVG.classList.add('off')
             iconSVG.classList.remove('on')
+            optionContainer.style.backgroundColor = 'lightcoral'
         }
     }
     if (option === 'capital') {
@@ -50,9 +55,11 @@ function complexityChange(option) {
         if (capital) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
+            optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
         } else {
             iconSVG.classList.add('off')
             iconSVG.classList.remove('on')
+            optionContainer.style.backgroundColor = 'lightcoral'
         }
     }
     if (option === 'special') {
@@ -62,9 +69,11 @@ function complexityChange(option) {
         if (special) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
+            optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
         } else {
             iconSVG.classList.add('off')
             iconSVG.classList.remove('on')
+            optionContainer.style.backgroundColor = 'lightcoral'
         }
     }
     if (option === 'number') {
@@ -74,9 +83,11 @@ function complexityChange(option) {
         if (numbers) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
+            optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
         } else {
             iconSVG.classList.add('off')
             iconSVG.classList.remove('on')
+            optionContainer.style.backgroundColor = 'lightcoral'
         }
     }
 }
@@ -112,7 +123,7 @@ function generatePassword(length, letters, capital, special, numbers) {
     }
 
     if (!letters && !capital && !special && !numbers) { // if nothing is enabled then it lets the user know
-        password = "No Complexity Option Selected"
+        password = "ERROR: No Complexity Option Selected"
     }
 
     if (Array.isArray(password)) { // if password is string then it doesnt try to join the array together
