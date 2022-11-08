@@ -13,7 +13,7 @@ body {
 
 main {
   position: relative;
-  padding: 10vh 0;
+  padding: 5vh 0;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -28,8 +28,44 @@ main h1 {
   letter-spacing: 0.3em;
   text-align: center;
   font-weight: 900;
+  overflow: hidden;
+  border-right: 15px solid rgb(240, 239, 244);
+  width: auto;
+  color: transparent;
+  white-space: nowrap;
+  -webkit-animation: typing-animation 3s steps(18) 0.5s forwards, text-cursor 0.5s step-end infinite alternate;
+          animation: typing-animation 3s steps(18) 0.5s forwards, text-cursor 0.5s step-end infinite alternate;
 }
 
+@-webkit-keyframes typing-animation {
+  from {
+    color: rgb(240, 239, 244);
+  }
+  to {
+    width: var(--headingCharacterWidth);
+    color: rgb(240, 239, 244);
+  }
+}
+
+@keyframes typing-animation {
+  from {
+    color: rgb(240, 239, 244);
+  }
+  to {
+    width: var(--headingCharacterWidth);
+    color: rgb(240, 239, 244);
+  }
+}
+@-webkit-keyframes text-cursor {
+  50% {
+    border-color: transparent;
+  }
+}
+@keyframes text-cursor {
+  50% {
+    border-color: transparent;
+  }
+}
 main p {
   color: rgb(240, 239, 244);
   font-size: 5vw;
@@ -82,6 +118,13 @@ main p {
   content: url(../icons/regenerate-outline.svg);
 }
 
+#password-output {
+  background-color: rgb(41, 21, 40);
+  width: 100%;
+  padding: 20px 0;
+  filter: drop-shadow(0 0 25px rgb(41, 21, 40));
+}
+
 .length-slider-container {
   display: flex;
   flex-direction: row;
@@ -93,6 +136,7 @@ main p {
 .length-slider-container p {
   font-size: 2rem;
   margin-left: 10vw;
+  text-align: left;
 }
 
 #length-display {
@@ -149,7 +193,7 @@ main p {
   justify-content: space-between;
   align-items: center;
   transition: all 1s ease;
-  transform: translateY(10%);
+  transform: translateY(25%);
 }
 
 .complexity-option {
@@ -167,7 +211,7 @@ main p {
   font-size: 1rem;
   color: rgb(41, 21, 40);
   background-color: rgb(104, 210, 104);
-  opacity: 0.2;
+  opacity: 0.5;
   transition: all 0.5s ease;
 }
 
@@ -290,6 +334,15 @@ main p {
   filter: opacity(1);
 }
 
+@media screen and (max-width: 1500px) {
+  main h1 {
+    -webkit-animation-duration: 0s;
+            animation-duration: 0s;
+    width: 100%;
+    white-space: normal;
+    border: none;
+  }
+}
 @media screen and (max-width: 750px) {
   main {
     padding: 0;
@@ -312,6 +365,7 @@ main p {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 70%;
+    transform: translateY(0);
   }
   .letter-capital-conatiner {
     grid-column: 1/3;

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Gen</title>
+    <title>Password Generator</title>
 
     <link rel="stylesheet" href="./assets/styles/style.css">
 </head>
 <body>
     <main>
-        <h1>PASSWORD GENERATOR</h1>
+        <h1 id="title">PASSWORD GENERATOR</h1>
         <div class="password-output-buttons-container">
             <button class="copy-password" onclick="navigator.clipboard.writeText(document.getElementById('password-output').innerHTML)"></button>
             <button class="generate-password" onclick="generatePassword(length, letters, capital, special, numbers)"></button>

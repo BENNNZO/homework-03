@@ -8,9 +8,10 @@ let letterArray  = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
 let specialArray = ['!', "@", '#', '$', '%', "^", '&', '*', '(', ")", '~', '`', '-', "=", '[', ']', '\\', ';', "'", ',', '.', '/', '_', "+", '{', '}', '|', ':', "\"", '<', '>', '?']
 let numbersArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-let specialCharacters = "!@#$%^&*()~`_+{}|:<>?-=[]\;',./'" 
-
 const lengthDisplay = document.getElementById('length-display')
+
+document.documentElement.style.setProperty('--headingCharacterWidth', `${document.getElementById('title').clientWidth}px`) // property setup for typing animation
+document.getElementById('title').style.width = '0'
 
 setInterval(function() { // updates the generator when settings are changed (updates happen every 50ms)
     length = document.getElementById('password-length-slider').value;

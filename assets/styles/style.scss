@@ -4,7 +4,7 @@
 
 $c1: rgb(  15,   5,  14, 1);
 $c2: rgba( 41,  21,  40, 1);
-$c3: rgba( 58,  62,  59, 1);
+$c3: rgb(80, 51, 90);
 $c4: rgba(158, 130, 156, 1);
 $c5: rgba(240, 239, 244, 1);
 
@@ -24,7 +24,7 @@ body {
 
 main {
     position: relative;
-    padding: 10vh 0;
+    padding: 5vh 0;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -39,6 +39,28 @@ main h1 {
     letter-spacing: 0.3em;
     text-align: center;
     font-weight: 900;
+    overflow: hidden;
+    border-right: 15px solid $c5;
+    width: auto;
+    color: transparent;
+    white-space: nowrap;
+    animation: typing-animation 3s steps(18) 0.5s forwards, text-cursor .5s step-end infinite alternate;
+}
+
+@keyframes typing-animation {
+    from {
+        color: $c5;
+    }
+    to {
+        width: var(--headingCharacterWidth);
+        color: $c5;
+    }
+}
+
+@keyframes text-cursor {
+    50% {
+        border-color: transparent;
+    }
 }
 
 // PASSWORD OUTPUT 
@@ -97,6 +119,15 @@ main p {
     content: url(../icons/regenerate-outline.svg);
 }
 
+// PASSWORD OUTPUT
+
+#password-output {
+    background-color: $c2;
+    width: 100%;
+    padding: 20px 0;
+    filter: drop-shadow(0 0 25px $c2);
+}
+
 // LENGTH SLIDER
 
 .length-slider-container {
@@ -110,7 +141,7 @@ main p {
 .length-slider-container p {
     font-size: 2rem;
     margin-left: 10vw;
-
+    text-align: left;
 }
 
 #length-display {
@@ -169,7 +200,7 @@ main p {
       justify-content: space-between;
       align-items: center;
       transition: all 1s ease;
-      transform: translateY(10%);
+      transform: translateY(25%);
 }
 
 .complexity-option {
@@ -187,7 +218,7 @@ main p {
     font-size: 1rem;
     color: $c2;
     background-color: rgb(104, 210, 104);
-    opacity: 0.2;
+    opacity: 0.5;
     transition: all 0.5s ease;
 }
 
@@ -287,6 +318,15 @@ main p {
     filter: opacity(1);
 }
 
+@media screen and (max-width: 1500px) {
+    main h1 {
+        animation-duration: 0s;
+        width: 100%;
+        white-space: normal;
+        border: none;
+    } 
+}
+
 @media screen and (max-width: 750px) {
     main {
         padding: 0;
@@ -309,6 +349,7 @@ main p {
         display: grid;
         grid-template-columns: 1fr 1fr;
         width: 70%;
+        transform: translateY(0);
     }
     .letter-capital-conatiner {
         grid-column: 1 / 3;
