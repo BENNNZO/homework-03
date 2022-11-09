@@ -44,6 +44,7 @@ main h1 {
     border-right: 15px solid $c4;
     width: auto;
     white-space: nowrap;
+    filter: brightness(1.1) drop-shadow(0 0 75px $c3);
     animation: typing-animation 2.5s steps(19) 0.5s forwards, text-cursor .5s step-end infinite alternate;
 }
 
@@ -71,6 +72,39 @@ main p {
 
 // COPY AND REGENERATE BUTTONS
 
+@for $i from 1 through 6 {
+    @if $i < 3 {
+        .button-container .password-output-buttons-container button:nth-child(#{$i}) {
+            animation: intro-button 1s ease-out forwards;
+            animation-delay: calc(0.1s * #{$i} + 0.6s);
+        }
+    }
+    @if $i > 2 {
+        $iCalc: calc($i - 2);
+        .button-container button:nth-child(#{$iCalc}) {
+            animation: intro-button 1s ease-out forwards;
+            animation-delay: calc(0.1s * #{$i} + 0.6s);
+            filter: opacity(0) blur(5px);
+        }
+    }
+}
+
+@keyframes intro-button {
+    0% {
+        transform: translateY(30px) scale(0);
+        filter: opacity(0) blur(5px);
+    }
+    10% {
+        transform: translateY(30px) scale(1);
+        filter: opacity(1) blur(0px);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(0px);
+        filter: opacity(1);
+    }
+}
+
 .button-container {
     margin: 0 10vw;
 }
@@ -96,11 +130,12 @@ main p {
     background-color: $c2;
     border: none;
     border-radius: 10px;
-    transition: all 0.25s ease;
+    transition: all 05s ease;
     outline: 2px solid $c1;
     color: $c4;
     padding: 10px;
     opacity: 0.3;
+    filter: opacity(0) blur(5px);
     &::before {
         margin-right: 10px;
         height: 90%;
@@ -139,7 +174,7 @@ main p {
         transform: scale(1);
         filter: blur(0);
     }
-    25% {
+    20% {
         transform: scale(0) rotate(360deg);
         filter: blur(5px);
     }
@@ -148,9 +183,10 @@ main p {
         filter: blur(0);
         content: url(../icons/checkmark-outline.svg);
     }
-    75% {
+    80% {
         transform: scale(0) rotate(360deg);
         filter: blur(5px);
+        content: url(../icons/checkmark-outline.svg);
     }
     100% {
         transform: scale(1);
@@ -352,6 +388,9 @@ main p {
     main h1 {
         font-size: 3rem;
     } 
+    .button-container > * {
+        color: $c5;
+    }
     .length-slider-container {
         flex-direction: column;
         width: 50%;
@@ -370,6 +409,10 @@ main p {
     }
     .complexity-option {
         border-radius: 5px;
+        color: $c5;
+    }
+    .complexity-option svg {
+        color: $c5;
     }
     .on-off {
         position: relative;
@@ -384,6 +427,7 @@ main p {
     .copy-password, .generate-password {
         opacity: 1;
         font-size: 1rem;
+        color: $c5;
     }
 }
 
@@ -394,5 +438,15 @@ main p {
     .length-slider-container p {
         margin: 0;
         font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    main h1 {
+        font-size: 2rem;
+    }
+    .length-slider-container p {
+        margin: 0;
+        font-size: 1rem;
     }
 }
