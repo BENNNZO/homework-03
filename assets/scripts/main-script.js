@@ -15,6 +15,12 @@ let numbersArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 const lengthDisplay = document.getElementById('length-display')
 
+document.querySelectorAll('button').forEach((e, i) => {
+    setTimeout(function() {
+        e.classList.remove('fade-in')
+    }, ((150 * i) + 1700))
+})
+
 document.documentElement.style.setProperty('--headingCharacterWidth', `${document.getElementById('title').clientWidth}px`) // property setup for typing animation
 document.getElementById('title').style.width = '0'
 

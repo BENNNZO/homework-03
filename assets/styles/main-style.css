@@ -72,6 +72,7 @@ main p {
           animation: intro-button 1s ease-out none;
   -webkit-animation-delay: calc(0.15s * 1 + 0.6s);
           animation-delay: calc(0.15s * 1 + 0.6s);
+  opacity: 0;
 }
 
 .button-container .password-output-buttons-container .fade-in:nth-child(2) {
@@ -79,6 +80,7 @@ main p {
           animation: intro-button 1s ease-out none;
   -webkit-animation-delay: calc(0.15s * 2 + 0.6s);
           animation-delay: calc(0.15s * 2 + 0.6s);
+  opacity: 0;
 }
 
 .button-container .fade-in:nth-child(1) {
@@ -86,6 +88,7 @@ main p {
           animation: intro-button 1s ease-out none;
   -webkit-animation-delay: calc(0.15s * 3 + 0.6s);
           animation-delay: calc(0.15s * 3 + 0.6s);
+  opacity: 0;
 }
 
 .button-container .fade-in:nth-child(2) {
@@ -93,6 +96,7 @@ main p {
           animation: intro-button 1s ease-out none;
   -webkit-animation-delay: calc(0.15s * 4 + 0.6s);
           animation-delay: calc(0.15s * 4 + 0.6s);
+  opacity: 0;
 }
 
 .button-container .fade-in:nth-child(3) {
@@ -100,6 +104,7 @@ main p {
           animation: intro-button 1s ease-out none;
   -webkit-animation-delay: calc(0.15s * 5 + 0.6s);
           animation-delay: calc(0.15s * 5 + 0.6s);
+  opacity: 0;
 }
 
 .button-container .fade-in:nth-child(4) {
@@ -107,6 +112,7 @@ main p {
           animation: intro-button 1s ease-out none;
   -webkit-animation-delay: calc(0.15s * 6 + 0.6s);
           animation-delay: calc(0.15s * 6 + 0.6s);
+  opacity: 0;
 }
 
 @-webkit-keyframes intro-button {
@@ -170,7 +176,7 @@ main p {
   transition: all 0.3s ease;
   color: rgb(158, 130, 156);
   padding: 10px;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 .copy-password::before, .generate-password::before {
   margin-right: 10px;

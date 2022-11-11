@@ -77,6 +77,7 @@ main p {
         .button-container .password-output-buttons-container .fade-in:nth-child(#{$i}) {
             animation: intro-button 1s ease-out none;
             animation-delay: calc(0.15s * #{$i} + 0.6s);
+            opacity: 0;
         }
     }
     @if $i > 2 {
@@ -84,6 +85,7 @@ main p {
         .button-container .fade-in:nth-child(#{$iCalc}) {
             animation: intro-button 1s ease-out none;
             animation-delay: calc(0.15s * #{$i} + 0.6s);
+            opacity: 0;
         }
     }
 }
@@ -133,7 +135,7 @@ main p {
     transition: all 0.3s ease;
     color: $c4;
     padding: 10px;
-    opacity: 0.3;
+    opacity: 0.5;
     &::before {
         margin-right: 10px;
         height: 90%;
