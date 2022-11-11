@@ -1,10 +1,10 @@
 # PASSWORD GENERATOR
 
 - ## **Features**
-      - **COMING SOON**
+      - COMING SOON
           - Dark and light mode option
           - Ability to see passwords generated in the past
-      - **Already Included Features**
+      - Already Included Features
           - Completly random passwords
           - Up to 20 characters
           - The choice to toggle on and off lowercase, uppercase, special characters, and numbers
