@@ -74,34 +74,34 @@ main p {
 
 @for $i from 1 through 6 {
     @if $i < 3 {
-        .button-container .password-output-buttons-container button:nth-child(#{$i}) {
-            animation: intro-button 1s ease-out forwards;
-            animation-delay: calc(0.1s * #{$i} + 0.6s);
+        .button-container .password-output-buttons-container .fade-in:nth-child(#{$i}) {
+            animation: intro-button 1s ease-out none;
+            animation-delay: calc(0.15s * #{$i} + 0.6s);
         }
     }
     @if $i > 2 {
         $iCalc: calc($i - 2);
-        .button-container button:nth-child(#{$iCalc}) {
-            animation: intro-button 1s ease-out forwards;
-            animation-delay: calc(0.1s * #{$i} + 0.6s);
-            filter: opacity(0) blur(5px);
+        .button-container .fade-in:nth-child(#{$iCalc}) {
+            animation: intro-button 1s ease-out none;
+            animation-delay: calc(0.15s * #{$i} + 0.6s);
         }
     }
 }
 
 @keyframes intro-button {
     0% {
+        display: block;
         transform: translateY(30px) scale(0);
-        filter: opacity(0) blur(5px);
+        filter: blur(5px);
     }
     10% {
         transform: translateY(30px) scale(1);
-        filter: opacity(1) blur(0px);
+        filter: blur(0px);
         opacity: 1;
     }
     to {
         transform: translateY(0px);
-        filter: opacity(1);
+        opacity: 0.5;
     }
 }
 
@@ -130,12 +130,10 @@ main p {
     background-color: $c2;
     border: none;
     border-radius: 10px;
-    transition: all 05s ease;
-    outline: 2px solid $c1;
+    transition: all 0.3s ease;
     color: $c4;
     padding: 10px;
     opacity: 0.3;
-    filter: opacity(0) blur(5px);
     &::before {
         margin-right: 10px;
         height: 90%;
@@ -143,13 +141,7 @@ main p {
     }
 }
 
-.copy-password:hover {
-    background-color: $c2;
-    color: $c5;
-    opacity: 1;
-}
-
-.generate-password:hover {
+.copy-password:hover, .generate-password:hover {
     background-color: $c2;
     color: $c5;
     opacity: 1;
@@ -195,10 +187,11 @@ main p {
     }
 }
 
+
 // PASSWORD OUTPUT
 
 #password-output {
-    background-color: $c2;
+    background-color: rgba( 41,  21,  40, 0.5);
     width: 100%;
     padding: 20px 0;
     filter: drop-shadow(0 0 25px $c2);
@@ -297,8 +290,8 @@ main p {
     color: $c2;
     background-color: rgb(104, 210, 104);
     box-shadow: 0 0 20px rgb(104, 210, 104, 0.7);
-    opacity: 0.2;
-    transition: all 0.5s ease;
+    opacity: 0.5;
+    transition: all 0.3s ease;
 }
 
 .complexity-option:hover {
@@ -450,3 +443,4 @@ main p {
         font-size: 1rem;
     }
 }
+

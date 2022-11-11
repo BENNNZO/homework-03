@@ -67,81 +67,79 @@ main p {
   text-align: center;
 }
 
-.button-container .password-output-buttons-container button:nth-child(1) {
-  -webkit-animation: intro-button 1s ease-out forwards;
-          animation: intro-button 1s ease-out forwards;
-  -webkit-animation-delay: calc(0.1s * 1 + 0.6s);
-          animation-delay: calc(0.1s * 1 + 0.6s);
+.button-container .password-output-buttons-container .fade-in:nth-child(1) {
+  -webkit-animation: intro-button 1s ease-out none;
+          animation: intro-button 1s ease-out none;
+  -webkit-animation-delay: calc(0.15s * 1 + 0.6s);
+          animation-delay: calc(0.15s * 1 + 0.6s);
 }
 
-.button-container .password-output-buttons-container button:nth-child(2) {
-  -webkit-animation: intro-button 1s ease-out forwards;
-          animation: intro-button 1s ease-out forwards;
-  -webkit-animation-delay: calc(0.1s * 2 + 0.6s);
-          animation-delay: calc(0.1s * 2 + 0.6s);
+.button-container .password-output-buttons-container .fade-in:nth-child(2) {
+  -webkit-animation: intro-button 1s ease-out none;
+          animation: intro-button 1s ease-out none;
+  -webkit-animation-delay: calc(0.15s * 2 + 0.6s);
+          animation-delay: calc(0.15s * 2 + 0.6s);
 }
 
-.button-container button:nth-child(1) {
-  -webkit-animation: intro-button 1s ease-out forwards;
-          animation: intro-button 1s ease-out forwards;
-  -webkit-animation-delay: calc(0.1s * 3 + 0.6s);
-          animation-delay: calc(0.1s * 3 + 0.6s);
-  filter: opacity(0) blur(5px);
+.button-container .fade-in:nth-child(1) {
+  -webkit-animation: intro-button 1s ease-out none;
+          animation: intro-button 1s ease-out none;
+  -webkit-animation-delay: calc(0.15s * 3 + 0.6s);
+          animation-delay: calc(0.15s * 3 + 0.6s);
 }
 
-.button-container button:nth-child(2) {
-  -webkit-animation: intro-button 1s ease-out forwards;
-          animation: intro-button 1s ease-out forwards;
-  -webkit-animation-delay: calc(0.1s * 4 + 0.6s);
-          animation-delay: calc(0.1s * 4 + 0.6s);
-  filter: opacity(0) blur(5px);
+.button-container .fade-in:nth-child(2) {
+  -webkit-animation: intro-button 1s ease-out none;
+          animation: intro-button 1s ease-out none;
+  -webkit-animation-delay: calc(0.15s * 4 + 0.6s);
+          animation-delay: calc(0.15s * 4 + 0.6s);
 }
 
-.button-container button:nth-child(3) {
-  -webkit-animation: intro-button 1s ease-out forwards;
-          animation: intro-button 1s ease-out forwards;
-  -webkit-animation-delay: calc(0.1s * 5 + 0.6s);
-          animation-delay: calc(0.1s * 5 + 0.6s);
-  filter: opacity(0) blur(5px);
+.button-container .fade-in:nth-child(3) {
+  -webkit-animation: intro-button 1s ease-out none;
+          animation: intro-button 1s ease-out none;
+  -webkit-animation-delay: calc(0.15s * 5 + 0.6s);
+          animation-delay: calc(0.15s * 5 + 0.6s);
 }
 
-.button-container button:nth-child(4) {
-  -webkit-animation: intro-button 1s ease-out forwards;
-          animation: intro-button 1s ease-out forwards;
-  -webkit-animation-delay: calc(0.1s * 6 + 0.6s);
-          animation-delay: calc(0.1s * 6 + 0.6s);
-  filter: opacity(0) blur(5px);
+.button-container .fade-in:nth-child(4) {
+  -webkit-animation: intro-button 1s ease-out none;
+          animation: intro-button 1s ease-out none;
+  -webkit-animation-delay: calc(0.15s * 6 + 0.6s);
+          animation-delay: calc(0.15s * 6 + 0.6s);
 }
 
 @-webkit-keyframes intro-button {
   0% {
+    display: block;
     transform: translateY(30px) scale(0);
-    filter: opacity(0) blur(5px);
+    filter: blur(5px);
   }
   10% {
     transform: translateY(30px) scale(1);
-    filter: opacity(1) blur(0px);
+    filter: blur(0px);
     opacity: 1;
   }
   to {
     transform: translateY(0px);
-    filter: opacity(1);
+    opacity: 0.5;
   }
 }
 
 @keyframes intro-button {
   0% {
+    display: block;
     transform: translateY(30px) scale(0);
-    filter: opacity(0) blur(5px);
+    filter: blur(5px);
   }
   10% {
     transform: translateY(30px) scale(1);
-    filter: opacity(1) blur(0px);
+    filter: blur(0px);
     opacity: 1;
   }
   to {
     transform: translateY(0px);
-    filter: opacity(1);
+    opacity: 0.5;
   }
 }
 .button-container {
@@ -169,12 +167,10 @@ main p {
   background-color: rgb(41, 21, 40);
   border: none;
   border-radius: 10px;
-  transition: all 5s ease;
-  outline: 2px solid rgb(15, 5, 14);
+  transition: all 0.3s ease;
   color: rgb(158, 130, 156);
   padding: 10px;
   opacity: 0.3;
-  filter: opacity(0) blur(5px);
 }
 .copy-password::before, .generate-password::before {
   margin-right: 10px;
@@ -182,13 +178,7 @@ main p {
   aspect-ratio: 1/1;
 }
 
-.copy-password:hover {
-  background-color: rgb(41, 21, 40);
-  color: rgb(240, 239, 244);
-  opacity: 1;
-}
-
-.generate-password:hover {
+.copy-password:hover, .generate-password:hover {
   background-color: rgb(41, 21, 40);
   color: rgb(240, 239, 244);
   opacity: 1;
@@ -261,7 +251,7 @@ main p {
   }
 }
 #password-output {
-  background-color: rgb(41, 21, 40);
+  background-color: rgba(41, 21, 40, 0.5);
   width: 100%;
   padding: 20px 0;
   filter: drop-shadow(0 0 25px rgb(41, 21, 40));
@@ -356,8 +346,8 @@ main p {
   color: rgb(41, 21, 40);
   background-color: rgb(104, 210, 104);
   box-shadow: 0 0 20px rgba(104, 210, 104, 0.7);
-  opacity: 0.2;
-  transition: all 0.5s ease;
+  opacity: 0.5;
+  transition: all 0.3s ease;
 }
 
 .complexity-option:hover {
@@ -529,4 +519,4 @@ main p {
     margin: 0;
     font-size: 1rem;
   }
-}/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=main-style.css.map */

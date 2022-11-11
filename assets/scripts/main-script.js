@@ -1,8 +1,10 @@
-let length = 10
-let letters = true
-let capital = true
-let special = true
-let numbers = true
+let complexityOptions = {
+    length: 10,
+    upperCase: true,
+    lowerCase: true,
+    special: true,
+    numbers: true
+}
 
 let rotation = 0
 let copied = false
@@ -17,20 +19,20 @@ document.documentElement.style.setProperty('--headingCharacterWidth', `${documen
 document.getElementById('title').style.width = '0'
 
 setInterval(function() { // updates the generator when settings are changed (updates happen every 50ms)
-    length = document.getElementById('password-length-slider').value;
+    complexityOptions.length = document.getElementById('password-length-slider').value;
 
     if (lengthDisplay.textContent.charAt(0) === '0') { // Remove 0 of textContent if present
         lengthDisplay.textContent = lengthDisplay.textContent.slice(1)
     }
 
-    if (length != lengthDisplay.textContent) { // if length changes then update generated password
-        generatePassword(length, letters, capital, special, numbers)
+    if (complexityOptions.length != lengthDisplay.textContent) { // if length changes then update generated password
+        generatePassword(complexityOptions)
     }
 
-    if (length < 10) { // if length is less than 10 then add 0 to the front (so that the character anount stays consistant)
-        lengthDisplay.textContent = `0${length}`
+    if (complexityOptions.length < 10) { // if length is less than 10 then add 0 to the front (so that the character anount stays consistant)
+        lengthDisplay.textContent = `0${complexityOptions.length}`
     } else {
-        lengthDisplay.textContent = length
+        lengthDisplay.textContent = complexityOptions.length
     }
 }, 50)
 
@@ -42,11 +44,11 @@ function generateButtonClick() {
 function complexityChange(option) {
     const optionContainer = document.getElementById(`${option}-complexity-option-container`)
 
-    if (option === 'letter') {
-        letters =! letters
-        generatePassword(length, letters, capital, special, numbers)
+    if (option === 'lowercase') {
+        complexityOptions.lowerCase = !complexityOptions.lowerCase
+        generatePassword(complexityOptions)
         const iconSVG = document.getElementById('letterSVG')
-        if (letters) {
+        if (complexityOptions.lowerCase) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
             optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
@@ -59,10 +61,10 @@ function complexityChange(option) {
         }
     }
     if (option === 'capital') {
-        capital =! capital
-        generatePassword(length, letters, capital, special, numbers)
+        complexityOptions.upperCase = !complexityOptions.upperCase
+        generatePassword(complexityOptions)
         const iconSVG = document.getElementById('capitalSVG')
-        if (capital) {
+        if (complexityOptions.upperCase) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
             optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
@@ -75,10 +77,10 @@ function complexityChange(option) {
         }
     }
     if (option === 'special') {
-        special =! special
-        generatePassword(length, letters, capital, special, numbers)
+        complexityOptions.special = !complexityOptions.special
+        generatePassword(complexityOptions)
         const iconSVG = document.getElementById('specialSVG')
-        if (special) {
+        if (complexityOptions.special) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
             optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
@@ -91,10 +93,10 @@ function complexityChange(option) {
         }
     }
     if (option === 'number') {
-        numbers =! numbers
-        generatePassword(length, letters, capital, special, numbers)
+        complexityOptions.numbers =! complexityOptions.numbers
+        generatePassword(complexityOptions)
         const iconSVG = document.getElementById('numberSVG')
-        if (numbers) {
+        if (complexityOptions.numbers) {
             iconSVG.classList.add('on')
             iconSVG.classList.remove('off')
             optionContainer.style.backgroundColor = 'rgb(104, 210, 104)'
@@ -108,30 +110,30 @@ function complexityChange(option) {
     }
 }
 
-function generatePassword(length, letters, capital, special, numbers) {
+function generatePassword(complexityOptions) {
     document.getElementById('copy-button').classList.remove('copied')
     let password = []
 
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < complexityOptions.length; i++) {
         let randCharacter = []
 
-        if (letters) {  // if letters are enabled check is capital is also and grab a random letter according to parameters
-            if (capital) {
-                const randLetter  = letterArray[Math.floor(Math.random() * letterArray.length)]
+        if (complexityOptions.lowerCase) {  // if letters are enabled check is capital is also and grab a random letter according to parameters
+            if (complexityOptions.upperCase) {
+                const randLetter = letterArray[Math.floor(Math.random() * letterArray.length)]
                 randCharacter.push(randLetter)
             } else {
-                const randLetter  = letterArray[Math.floor(Math.random() * letterArray.length)]
+                const randLetter = letterArray[Math.floor(Math.random() * letterArray.length)]
                 randCharacter.push(randLetter.toLowerCase())
-            }
-        } else if (capital === true) {
+            } 
+        } else if (complexityOptions.upperCase) {
             const randLetter  = letterArray[Math.floor(Math.random() * letterArray.length)]
             randCharacter.push(randLetter.toUpperCase())
         }
-        if (special) {  // if special characters are enabled then get a random character from array
+        if (complexityOptions.special) {  // if special characters are enabled then get a random character from array
             const randSpecial = specialArray[Math.floor(Math.random() * specialArray.length)]
             randCharacter.push(randSpecial)
         }
-        if (numbers) {  // if number characters are enabled then get a random character from array
+        if (complexityOptions.numbers) {  // if number characters are enabled then get a random character from array
             const randNumber  = numbersArray[Math.floor(Math.random() * numbersArray.length)]
             randCharacter.push(randNumber)
         }
@@ -139,14 +141,10 @@ function generatePassword(length, letters, capital, special, numbers) {
         password.push(randCharacter[Math.floor(Math.random() * randCharacter.length)])
     }
 
-    if (!letters && !capital && !special && !numbers) { // if nothing is enabled then it lets the user know
-        password = "ERROR: No Complexity Option Selected"
-    }
-
-    if (Array.isArray(password)) { // if password is string then it doesnt try to join the array together
+    if (!complexityOptions.lowerCase && !complexityOptions.upperCase && !complexityOptions.special && !complexityOptions.numbers) { // if nothing is enabled then it lets the user know
+        document.getElementById('password-output').textContent = "ERROR: No Complexity Option Selected"
+    } else { // else output the newly generated password
         document.getElementById('password-output').textContent = password.join('')
-    } else {
-        document.getElementById('password-output').textContent = password
     }
 }
 
@@ -155,4 +153,11 @@ function copyClipboard() {
     document.getElementById('copy-button').classList.add('copied')
 }
 
-generatePassword(length, letters, capital, special, numbers)
+// setTimeout(function () {
+//     const fadeInElements = document.querySelectorAll('.fade-in')
+//     for (let i = 0; i < fadeInElements.length; i++) {
+//         fadeInElements[i].classList.remove('fade-in')
+//     }
+// }, 1500)
+
+generatePassword(complexityOptions)

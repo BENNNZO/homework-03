@@ -6,36 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
 
-    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/main-style.css">
+    <link rel="stylesheet" href="./assets/styles/reactive-grid-style.css">
 </head>
 <body>
     <main>
+        <div id="grid-container"></div>
         <h1 id="title">PASSWORD GENERATOR.</h1>
         <div class="button-container">
             <div class="password-output-buttons-container">
-                <button class="copy-password" onclick="copyClipboard()" id="copy-button">COPY</button>
-                <button class="generate-password" onclick="generatePassword(length, letters, capital, special, numbers); generateButtonClick()">GENERATE NEW</button>
+                <button class="copy-password fade-in" onclick="copyClipboard()" id="copy-button">COPY</button>
+                <button class="generate-password fade-in" onclick="generatePassword(complexityOptions); generateButtonClick()">GENERATE NEW</button>
             </div>
             <section class="complexity-options">
-                <button class="complexity-option" onclick="complexityChange('letter')" id="letter-complexity-option-container">
+                <button class="complexity-option fade-in" onclick="complexityChange('lowercase')" id="lowercase-complexity-option-container">
                     <div class="on-off on" id="letterSVG">
                         <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close Circle</title><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M320 320L192 192M192 320l128-128"/></svg>
                         <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark Circle</title><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M352 176L217.6 336 160 272"/></svg>
                     </div>
                 LOWERCASE</button>
-                <button class="complexity-option" onclick="complexityChange('capital')" id="capital-complexity-option-container">
+                <button class="complexity-option fade-in" onclick="complexityChange('capital')" id="capital-complexity-option-container">
                     <div class="on-off on" id="capitalSVG">
                         <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close Circle</title><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M320 320L192 192M192 320l128-128"/></svg>
                         <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark Circle</title><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M352 176L217.6 336 160 272"/></svg>
                     </div>
                 UPPERCASE</button>
-                <button class="complexity-option" onclick="complexityChange('special')" id="special-complexity-option-container">
+                <button class="complexity-option fade-in" onclick="complexityChange('special')" id="special-complexity-option-container">
                     <div class="on-off on" id="specialSVG">
                         <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close Circle</title><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M320 320L192 192M192 320l128-128"/></svg> 
                         <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark Circle</title><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M352 176L217.6 336 160 272"/></svg>
                     </div>
                 SYMBOLS</button>
-                <button class="complexity-option" onclick="complexityChange('number')" id="number-complexity-option-container">
+                <button class="complexity-option fade-in" onclick="complexityChange('number')" id="number-complexity-option-container">
                     <div class="on-off on" id="numberSVG">
                         <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Close Circle</title><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M320 320L192 192M192 320l128-128"/></svg>
                         <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Checkmark Circle</title><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M352 176L217.6 336 160 272"/></svg>
@@ -50,6 +52,7 @@
         </div>
     </main>
 
-    <script src="./assets/scripts/script.js"></script>
+    <script src="./assets/scripts/main-script.js"></script>
+    <script src="./assets/scripts/reactive-grid-script.js"></script>
 </body>
 </html>
